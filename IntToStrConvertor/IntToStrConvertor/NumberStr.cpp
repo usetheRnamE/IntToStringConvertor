@@ -1,6 +1,6 @@
 #include "NumberStr.h"
 
-int NumberStr::GetDigitsCount()
+inline int NumberStr::GetDigitsCount()
 {
     return digitsCount;
 }
@@ -10,7 +10,7 @@ void NumberStr::SetDigitsCount(const int& _int)
     digitsCount = _int;
 }
 
-std::string& NumberStr::GetPresetStr()
+inline std::string& NumberStr::GetPresetStr()
 {
     return *presetStr;
 }

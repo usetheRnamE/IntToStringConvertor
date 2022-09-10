@@ -1,15 +1,17 @@
 #pragma once
-
 #include <iostream>
 #include <string>
-#include <optional>
-class NumberStr
+
+#include "Number.h"
+
+#define OutRange -1
+class NumberStr : public Number
 {
 private:
-	 int digitsCount = -1;
+	 int digitsCount = OutRange;
 
 	 std::string* presetStr = nullptr;
-	 std::string addbleStr = nullptr;
+	 std::string addbleStr = NULL;
 
 	 bool hasAddableStr = true;
 

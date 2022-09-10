@@ -38,14 +38,77 @@ void NumToVector(int& num, std::vector<int>& vec)
 
 enum Digits
 {
-	Zero, One, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, 
-	Eleven, Twelve, Thirteen, Fourteen, Fifteen, Sixteen, Seventeen, Eighteen, Nineteen,
-	Twenty 
+	Zero, One, Two, Three, Four, Five, Six, Seven, Eight, Nine
 };
 
-void Convert(NumberStr number)
+template <typename T>
+NumberStr DigitDefinde(T digitSize)
 {
-	
+	if (digitSize < 10)
+	{
+		NaturalNumber naturalNumber;
+		return naturalNumber;
+	}
+	else if (digitSize >= 10 && digitSize < 100)
+	{
+		DozenNumber dozenNumber;
+		return dozenNumber;
+	}
+	else if (digitSize >= 100 && digitSize < 1000)
+	{
+		ThreeDigitNumber threeDigitNumber;
+		return threeDigitNumber;
+	}
+}
+
+std::string FinalString(NumberStr& currentNum, std::vector<int>& numInVec)
+{
+	#define sizeOfCurrentNum currentNum.GetDigitsCount()
+	#define stringNumArr currentNum.GetPresetStr()
+
+	std::string finalStr;
+	for (int i = 0; i < sizeOfCurrentNum; i++)
+	{
+		switch (numInVec[i])
+		{
+		case Zero:
+			if (i == Zero && sizeOfCurrentNum == One) // cuz we can have input like that: 012
+				finalStr = stringNumArr[Zero];
+			break;
+		case One:
+			finalStr = stringNumArr[One];
+			break;
+		case Two:
+			finalStr = stringNumArr[Two];
+			break;
+		case Three:
+			finalStr = stringNumArr[Three];
+			break;
+		case Four:
+			finalStr = stringNumArr[Four];
+			break;
+		case Five:
+			finalStr = stringNumArr[Five];
+			break;
+		case Six:
+			finalStr = stringNumArr[Six];
+			break;
+		case Seven:
+			finalStr = stringNumArr[Seven];
+			break;
+		case Eight:
+			finalStr = stringNumArr[Eight];
+			break;
+		case Nine:
+			finalStr = stringNumArr[Nine];
+			break;
+		default:
+			finalStr = "NaN";
+			break;
+		}
+
+		currentNum = DigitDefinde(sizeOfCurrentNum - 1);
+	}
 }
 
 void Convertor::Convert(int& num)
@@ -58,7 +121,7 @@ void Convertor::Convert(int& num)
 	NumToVector(num, numInVec);
 
 	std::vector<std::string> numberStr;
-	numberStr.reserve(digitSize);
+	numberStr.reserve(25);
 
 	#pragma region BadCode
 
@@ -107,12 +170,10 @@ void Convertor::Convert(int& num)
 	//}
 	#pragma endregion //Better to use polymorphism instead this shit
 
-	if (digitSize < 10)
-		NaturalNumber::NaturalNumber();
-	else if (digitSize >= 10 && digitSize < 100)
-		DozenNumber::DozenNumber();
-	else if (digitSize >= 100 && digitSize < 1000)
-		ThreeDigitNumber::ThreeDigitNumber();
+	NumberStr currentNum;
+	currentNum = DigitDefinde(digitSize);
+
+	
 
 	if (numberStr.size() == NULL) 
 		numberStr[0] = "NaN";
