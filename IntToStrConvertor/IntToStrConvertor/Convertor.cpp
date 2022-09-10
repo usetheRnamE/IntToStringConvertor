@@ -5,6 +5,10 @@
 #include <vector>
 #include <string>
 
+#include "NaturalNumber.h"
+#include "DozenNumber.h"
+#include "ThreeDigitNumber.h"
+
 inline int DigitSize(int& num) 
 {
 	return static_cast<int>(log10(num) + 1);
@@ -39,6 +43,11 @@ enum Digits
 	Twenty 
 };
 
+void Convert(NumberStr number)
+{
+	
+}
+
 void Convertor::Convert(int& num)
 {
 	int digitSize = DigitSize(num);
@@ -49,7 +58,7 @@ void Convertor::Convert(int& num)
 	NumToVector(num, numInVec);
 
 	std::vector<std::string> numberStr;
-	numberStr.reserve(9);
+	numberStr.reserve(digitSize);
 
 	#pragma region BadCode
 
@@ -98,8 +107,15 @@ void Convertor::Convert(int& num)
 	//}
 	#pragma endregion //Better to use polymorphism instead this shit
 
+	if (digitSize < 10)
+		NaturalNumber::NaturalNumber();
+	else if (digitSize >= 10 && digitSize < 100)
+		DozenNumber::DozenNumber();
+	else if (digitSize >= 100 && digitSize < 1000)
+		ThreeDigitNumber::ThreeDigitNumber();
 
 	if (numberStr.size() == NULL) 
 		numberStr[0] = "NaN";
 
 }
+

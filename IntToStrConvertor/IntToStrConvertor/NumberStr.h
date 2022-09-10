@@ -1,18 +1,26 @@
 #pragma once
 
+#include <iostream>
 #include <string>
+#include <optional>
 class NumberStr
 {
 private:
-	 int digitsCount;
-	 std::string presetStr[10];
+	 int digitsCount = -1;
+
+	 std::string* presetStr = nullptr;
+	 std::string addbleStr = nullptr;
+
+	 bool hasAddableStr = true;
 
 protected:
-	void SetDigitsCount(int& value);
-	void SetPresetStr(std::string& presetValue);
+	void SetDigitsCount(const int& _int);
+	void SetPresetStr(std::string& _stringArray);
+	void SetAddableStr(std::string& _string);
 
 public:
 	int GetDigitsCount();
 	std::string& GetPresetStr();
+	bool IsAddable();
 };
 

@@ -5,9 +5,9 @@ int NumberStr::GetDigitsCount()
     return digitsCount;
 }
 
-void NumberStr::SetDigitsCount(int& value)
+void NumberStr::SetDigitsCount(const int& _int)
 {
-    digitsCount = value;
+    digitsCount = _int;
 }
 
 std::string& NumberStr::GetPresetStr()
@@ -15,7 +15,20 @@ std::string& NumberStr::GetPresetStr()
     return *presetStr;
 }
 
-void NumberStr::SetPresetStr(std::string& presetValue)
+void NumberStr::SetPresetStr(std::string& _stringArray)
 {
-    *presetStr = presetValue;
+    presetStr = &_stringArray;
+}
+
+void NumberStr::SetAddableStr(std::string& _string)
+{
+    if (_string.size() != 0)
+        addbleStr = _string;
+   else
+       hasAddableStr = false;
+}
+
+bool NumberStr::IsAddable()
+{
+    return hasAddableStr;
 }
